@@ -1,0 +1,381 @@
+{
+  "info": {
+    "name": "Dating App Matching System",
+    "description": "API endpoints for a dating app user matching and compatibility system",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Users",
+      "description": "User management endpoints",
+      "item": [
+        {
+          "name": "Create User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/users/",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", ""]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Alex Johnson\",\n  \"age\": 28,\n  \"gender\": \"M\",\n  \"email\": \"alex.johnson@example.com\",\n  \"city\": \"New York\",\n  \"latitude\": 40.7128,\n  \"longitude\": -74.0060,\n  \"interests\": [\"hiking\", \"photography\", \"cooking\", \"travel\"],\n  \"min_age_pref\": 23,\n  \"max_age_pref\": 35,\n  \"gender_pref\": \"F\",\n  \"max_distance_pref\": 50,\n  \"interest_weight\": 0.4,\n  \"age_weight\": 0.3,\n  \"distance_weight\": 0.3\n}"
+            },
+            "description": "Create a new user with profile information, interests, and preferences."
+          }
+        },
+        {
+          "name": "Create User (Minimal)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/users/",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", ""]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Jamie Smith\",\n  \"age\": 32,\n  \"gender\": \"F\",\n  \"email\": \"jamie.smith@example.com\",\n  \"city\": \"Los Angeles\",\n  \"interests\": [\"yoga\", \"music\", \"travel\"]\n}"
+            },
+            "description": "Create a user with minimal required information."
+          }
+        },
+        {
+          "name": "Get All Users",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users/?skip=0&limit=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", ""],
+              "query": [
+                {
+                  "key": "skip",
+                  "value": "0",
+                  "description": "Number of users to skip"
+                },
+                {
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum number of users to return"
+                }
+              ]
+            },
+            "description": "Retrieve a list of all users with pagination."
+          }
+        },
+        {
+          "name": "Get User by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users/{{userId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "{{userId}}"]
+            },
+            "description": "Retrieve a specific user by their ID."
+          }
+        },
+        {
+          "name": "Update User",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/users/{{userId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "{{userId}}"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Alex Johnson Updated\",\n  \"age\": 29,\n  \"city\": \"Brooklyn\",\n  \"interests\": [\"hiking\", \"photography\", \"cooking\", \"travel\", \"music\"]\n}"
+            },
+            "description": "Update a user's profile information."
+          }
+        },
+        {
+          "name": "Delete User",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users/{{userId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "{{userId}}"]
+            },
+            "description": "Delete a user and all associated data."
+          }
+        }
+      ]
+    },
+    {
+      "name": "User Location",
+      "item": [
+        {
+          "name": "Update User Location",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/users/{{userId}}/location",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "{{userId}}", "location"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"latitude\": 40.7128,\n  \"longitude\": -74.0060\n}"
+            },
+            "description": "Update a user's location coordinates."
+          }
+        }
+      ]
+    },
+    {
+      "name": "User Preferences",
+      "item": [
+        {
+          "name": "Update User Preferences",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/users/{{userId}}/preferences",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "{{userId}}", "preferences"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"min_age_pref\": 25,\n  \"max_age_pref\": 40,\n  \"gender_pref\": \"F\",\n  \"max_distance_pref\": 100,\n  \"interest_weight\": 0.5,\n  \"age_weight\": 0.2,\n  \"distance_weight\": 0.3\n}"
+            },
+            "description": "Update a user's matching preferences and compatibility weights."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Matches",
+      "item": [
+        {
+          "name": "Get User Matches",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users/{{userId}}/matches?limit=20",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "{{userId}}", "matches"],
+              "query": [
+                {
+                  "key": "limit",
+                  "value": "20",
+                  "description": "Maximum number of matches to return"
+                }
+              ]
+            },
+            "description": "Get a list of compatible matches for a specific user."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Interests",
+      "item": [
+        {
+          "name": "Get All Interests",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/interests/",
+              "host": ["{{baseUrl}}"],
+              "path": ["interests", ""]
+            },
+            "description": "Get a list of all interests in the system."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Test Workflow",
+      "item": [
+        {
+          "name": "Create Test User 1",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/users/",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", ""]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Test User 1\",\n  \"age\": 30,\n  \"gender\": \"M\",\n  \"email\": \"test1@example.com\",\n  \"city\": \"New York\",\n  \"latitude\": 40.7128,\n  \"longitude\": -74.0060,\n  \"interests\": [\"hiking\", \"movies\", \"cooking\", \"travel\"],\n  \"min_age_pref\": 25,\n  \"max_age_pref\": 35,\n  \"gender_pref\": \"F\",\n  \"max_distance_pref\": 50\n}"
+            },
+            "description": "Create a test user for the matching workflow."
+          }
+        },
+        {
+          "name": "Create Test User 2",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/users/",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", ""]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Test User 2\",\n  \"age\": 28,\n  \"gender\": \"F\",\n  \"email\": \"test2@example.com\",\n  \"city\": \"Brooklyn\",\n  \"latitude\": 40.6782,\n  \"longitude\": -73.9442,\n  \"interests\": [\"hiking\", \"yoga\", \"cooking\", \"reading\"],\n  \"min_age_pref\": 25,\n  \"max_age_pref\": 40,\n  \"gender_pref\": \"M\",\n  \"max_distance_pref\": 30\n}"
+            },
+            "description": "Create another test user for the matching workflow."
+          }
+        },
+        {
+          "name": "Create Test User 3",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/users/",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", ""]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Test User 3\",\n  \"age\": 32,\n  \"gender\": \"F\",\n  \"email\": \"test3@example.com\",\n  \"city\": \"Los Angeles\",\n  \"latitude\": 34.0522,\n  \"longitude\": -118.2437,\n  \"interests\": [\"travel\", \"music\", \"photography\", \"art\"],\n  \"min_age_pref\": 28,\n  \"max_age_pref\": 38,\n  \"gender_pref\": \"M\",\n  \"max_distance_pref\": 50\n}"
+            },
+            "description": "Create another test user for the matching workflow."
+          }
+        },
+        {
+          "name": "Get Matches for Test User 1",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/users/{{testUser1Id}}/matches",
+              "host": ["{{baseUrl}}"],
+              "path": ["users", "{{testUser1Id}}", "matches"]
+            },
+            "description": "Get matches for test user 1."
+          }
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "if (pm.response.code === 200 || pm.response.code === 201) {",
+          "    var jsonData = pm.response.json();",
+          "    ",
+          "    // Store user ID if it exists in the response",
+          "    if (jsonData.id) {",
+          "        // If the request is for creating the first test user, store that specific ID",
+          "        if (pm.request.url.toString().includes('/users/') && pm.request.method === 'POST' && pm.request.body && pm.request.body.raw.includes('\"name\": \"Test User 1\"')) {",
+          "            pm.collectionVariables.set('testUser1Id', jsonData.id);",
+          "            console.log('Set testUser1Id to ' + jsonData.id);",
+          "        } else if (pm.request.url.toString().includes('/users/') && pm.request.method === 'POST' && pm.request.body && pm.request.body.raw.includes('\"name\": \"Test User 2\"')) {",
+          "            pm.collectionVariables.set('testUser2Id', jsonData.id);",
+          "            console.log('Set testUser2Id to ' + jsonData.id);",
+          "        } else if (pm.request.url.toString().includes('/users/') && pm.request.method === 'POST' && pm.request.body && pm.request.body.raw.includes('\"name\": \"Test User 3\"')) {",
+          "            pm.collectionVariables.set('testUser3Id', jsonData.id);",
+          "            console.log('Set testUser3Id to ' + jsonData.id);",
+          "        } else {",
+          "            // For any other user creation, store the user ID in the generic variable",
+          "            pm.collectionVariables.set('userId', jsonData.id);",
+          "            console.log('Set userId to ' + jsonData.id);",
+          "        }",
+          "    }",
+          "}"
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8000",
+      "type": "string"
+    },
+    {
+      "key": "userId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "testUser1Id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "testUser2Id",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "testUser3Id",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}

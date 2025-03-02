@@ -3,3 +3,6 @@ uvicorn
 sqlalchemy
 pydantic[email]
 email-validator
+textblob
+fuzzywuzzy
+python-Levenshtein
