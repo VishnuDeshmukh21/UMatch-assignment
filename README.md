@@ -145,7 +145,7 @@ The core idea of the matching service is to find potential matches for a user ba
 
 - **Euclidean Distance:** Measures age similarity:
 
-   d(A, B) = sqrt((A_age - B_age)^2)
+                        d(A, B) = sqrt((A_age - B_age)^2)
 
 - **Normalization:**
 
