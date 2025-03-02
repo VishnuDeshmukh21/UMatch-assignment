@@ -1,4 +1,76 @@
 
+# Project Setup Documentation
+
+This guide will walk you through setting up and running the project in your local environment.
+
+## Prerequisites
+
+Make sure you have the following tools installed:
+
+- Docker
+- Docker Compose
+- Postman (for testing the API)
+
+## Steps to Set Up and Run the Application
+
+1. **Clone the Repository**
+
+   First, clone the project repository to your local machine:
+
+   ```bash
+   git clone https://github.com/VishnuDeshmukh21/UMatch-assignment.git
+   cd UMatch-assignment
+   ```
+
+2. **Build the Docker Containers**
+
+   Run the following command to build the Docker containers:
+
+   ```bash
+   docker-compose build
+   ```
+
+   This will create the required images for the containers defined in your `docker-compose.yml` file.
+
+3. **Start the Docker Containers**
+
+   After building the containers, start them in detached mode:
+
+   ```bash
+   docker-compose up -d
+   ```
+
+   This will start the containers in the background, allowing you to interact with the application.
+
+4. **Verify Containers Are Running**
+
+   Ensure the containers are up and running by checking the status:
+
+   ```bash
+   docker-compose ps
+   ```
+
+   You should see your containers listed and their statuses.
+
+5. **Access the Application via Postman**
+
+   - Open Postman.
+   - Import the provided Postman collection to test the endpoints.
+     - Go to **File > Import** in Postman, and select the collection file.
+   - Send requests to the application as needed. The API should now be accessible through the Docker containers.
+
+## Stopping the Containers
+
+When you’re done, you can stop the Docker containers by running:
+
+```bash
+docker-compose down
+```
+
+This will stop and remove all containers, networks, and volumes associated with the project.
+
+---
+
 ## 1. User Update Endpoint
 
 ### **Implementation Approach:**
@@ -73,7 +145,7 @@ The core idea of the matching service is to find potential matches for a user ba
 
 - **Euclidean Distance:** Measures age similarity:
 
-d(A, B) = sqrt((A_age - B_age)^2)
+   d(A, B) = sqrt((A_age - B_age)^2)
 
 - **Normalization:**
 
