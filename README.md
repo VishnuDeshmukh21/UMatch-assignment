@@ -1,4 +1,3 @@
-
 # Project Setup Documentation
 
 This guide will walk you through setting up and running the project in your local environment.
@@ -7,22 +6,53 @@ This guide will walk you through setting up and running the project in your loca
 
 Make sure you have the following tools installed:
 
-- Docker
-- Docker Compose
+- Python (if you're running the project without Docker)
+- Docker (if you're using Docker)
+- Docker Compose (if you're using Docker)
 - Postman (for testing the API)
 
 ## Steps to Set Up and Run the Application
 
-1. **Clone the Repository**
+### 1. Clone the Repository
 
-   First, clone the project repository to your local machine:
+First, clone the project repository to your local machine:
+
+```bash
+git clone https://github.com/VishnuDeshmukh21/UMatch-assignment.git
+cd UMatch-assignment
+```
+
+---
+
+### Option 1: Running with Python (Default Method)
+
+If you prefer running the application without Docker, follow these steps:
+
+1. **Install Dependencies**
+
+   Install the required Python dependencies by running:
 
    ```bash
-   git clone https://github.com/VishnuDeshmukh21/UMatch-assignment.git
-   cd UMatch-assignment
+   pip install -r requirements.txt
    ```
 
-2. **Build the Docker Containers**
+2. **Run the Application**
+
+   Start the application using `uvicorn`:
+
+   ```bash
+   uvicorn main:app --reload
+   ```
+
+   This will start the application locally, and you can access it via `http://localhost:8000`.
+
+---
+
+### Option 2: Running with Docker (Alternative Method)
+
+If you'd like to use Docker, follow these steps:
+
+1. **Build the Docker Containers**
 
    Run the following command to build the Docker containers:
 
@@ -30,9 +60,7 @@ Make sure you have the following tools installed:
    docker-compose build
    ```
 
-   This will create the required images for the containers defined in your `docker-compose.yml` file.
-
-3. **Start the Docker Containers**
+2. **Start the Docker Containers**
 
    After building the containers, start them in detached mode:
 
@@ -40,9 +68,7 @@ Make sure you have the following tools installed:
    docker-compose up -d
    ```
 
-   This will start the containers in the background, allowing you to interact with the application.
-
-4. **Verify Containers Are Running**
+3. **Verify Containers Are Running**
 
    Ensure the containers are up and running by checking the status:
 
@@ -50,18 +76,20 @@ Make sure you have the following tools installed:
    docker-compose ps
    ```
 
-   You should see your containers listed and their statuses.
+---
 
-5. **Access the Application via Postman**
+### 2. Access the Application via Postman
 
-   - Open Postman.
-   - Import the provided Postman collection to test the endpoints.
-     - Go to **File > Import** in Postman, and select the collection file.
-   - Send requests to the application as needed. The API should now be accessible through the Docker containers.
+- Open Postman.
+- Import the provided Postman collection to test the endpoints.
+  - Go to **File > Import** in Postman, and select the collection file.
+- Send requests to the application as needed.
 
-## Stopping the Containers
+---
 
-When you’re done, you can stop the Docker containers by running:
+## Stopping the Containers (Docker Version)
+
+If you’re using Docker, stop the containers with:
 
 ```bash
 docker-compose down
