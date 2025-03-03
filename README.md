@@ -205,7 +205,7 @@ The core idea of the matching service is to find potential matches for a user ba
 
 ---
 
-🚀 Future Enhancements for Better Matches & a Smarter Application
+## 🚀 Future Enhancements for Better Matches & a Smarter Application
 
 ### 1. Enhanced Matching Algorithm
 - **Incorporate Multiple Factors**: Extend the similarity check beyond age by considering shared interests, location proximity, and other demographic attributes.
